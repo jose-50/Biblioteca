@@ -438,7 +438,7 @@ public class UsuarioDAL {
         ArrayList<Usuario> usuarios = new ArrayList();
         try (Connection conn = ComunDB.obtenerConexion();) { // Obtener la conexion desde la clase ComunDB y encerrarla en try para cierre automatico
             String sql = "SELECT "; // Iniciar la variables para el String de la consulta SELECT
-            if (pUsuario.getTop_aux() > 0 && ComunDB.TIPODB == ComunDB.TipoDB.SQLSERVER) {
+            if (pUsuario.getTop_aux() > 0 && ComunDB.TIPOBD == ComunDB.TipoBD.SQLSERVER) {
                 sql += "TOP " + pUsuario.getTop_aux() + " "; // Agregar el TOP en el caso que se este utilizando SQL SERVER
             }
             sql += obtenerCampos(); // Obtener los campos de la tabla de Usuario que iran en el SELECT
