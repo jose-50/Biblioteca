@@ -15,6 +15,9 @@ public class Lector {
     private int top_aux;
      private ArrayList<PrestamoLibro> prestamoLibros;
 
+    public Lector() {
+    }
+
     public Lector(int id, String nombre, String apellido, String dui) {
         this.id = id;
         this.nombre = nombre;

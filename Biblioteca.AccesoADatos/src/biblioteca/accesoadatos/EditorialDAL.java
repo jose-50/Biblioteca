@@ -6,6 +6,8 @@ package biblioteca.accesoadatos;
 import java.util.*; // Utilizar la utileria de java https://docs.oracle.com/javase/8/docs/api/java/util/package-summary.html
 import java.sql.*;
 import biblioteca.entidadesdenegocio.*;
+import java.util.*; // Utilizar la utileria de java https://docs.oracle.com/javase/8/docs/api/java/util/package-summary.html
+
 
 
 /**
@@ -19,7 +21,8 @@ public class EditorialDAL {
     private static String obtenerSelect(Editorial pEditorial) {
         String sql;
         sql = "SELECT ";
-        if (pEditorial.getTop_aux() > 0 && ComunDB.TIPOBD == TIPOBD =ComunDB.TipoBD.SQLSERVER) {
+                if (pEditorial.getTop_aux() > 0 && ComunDB.TIPODB == ComunDB.TipoDB.SQLSERVER) {
+
             // Agregar el TOP a la consulta SELECT si el gestor de base de datos es SQL SERVER y "getTop_aux" es mayor a cero
             sql += "TOP " + pEditorial.getTop_aux() + " ";
         }
@@ -29,7 +32,7 @@ public class EditorialDAL {
     
      private static String agregarOrderBy(Editorial pEditorial) {
         String sql = " ORDER BY e.Id DESC";
-        if (pEditorial.getTop_aux() > 0 && ComunDB.TIPOBD == ComunDB.TipoBD.MYSQL) {
+        if (pEditorial.getTop_aux() > 0 && ComunDB.TIPODB == ComunDB.TipoDB.MYSQL) {
             // Agregar el LIMIT a la consulta SELECT de la tabla de Rol en el caso que getTop_aux() sea mayor a cero y el gestor de base de datos
             // sea MYSQL
             sql += " LIMIT " + pEditorial.getTop_aux() + " ";

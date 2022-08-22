@@ -19,6 +19,9 @@ public class PrestamoLibro {
     private Libro libro;
     private Lector lector;
 
+    public PrestamoLibro() {
+    }
+
     public PrestamoLibro(int id, int idLibro, String fechaEntrega, String fechaDevolucion) {
         this.id = id;
         this.idLibro = idLibro;
