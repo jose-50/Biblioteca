@@ -6,25 +6,24 @@ package biblioteca.appweb.controllers;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import biblioteca.accesoadatos.RolDAL;
 import biblioteca.accesoadatos.UsuarioDAL;
 import biblioteca.appweb.utils.*;
-import biblioteca.entidadeseenegocio.Rol;
-import biblioteca.entidadeseenegocio.Usuario;
+import biblioteca.entidadesdenegocio.Rol;
+import biblioteca.entidadesdenegocio.Usuario;
 
 
 /**
  *
  * @author Alumno
  */
-@WebServlet(name = "UsuarioServlet", urlPatterns = {"/UsuarioServlet"})
-public class UsuarioServlet extends HttpServlet {
+
 
 @WebServlet(name = "UsuarioServlet", urlPatterns = {"/Usuario"})
 public class UsuarioServlet extends HttpServlet {

@@ -5,10 +5,7 @@ import java.util.*;
 import java.sql.*;
 import java.time.LocalDate; 
 
-/**
- *
- * @author DELL
- */
+
 public class UsuarioDAL {
     
     // Metodo para poder encriptar en MD5 la contraseña del usuario
