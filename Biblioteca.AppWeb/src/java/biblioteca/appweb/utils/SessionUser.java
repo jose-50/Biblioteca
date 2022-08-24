@@ -5,83 +5,60 @@
 package biblioteca.appweb.utils;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import biblioteca.entidadesdenegocio.*;
 
-/**
- *
- * @author Alumno
- */
-@WebServlet(name = "SessionUser", urlPatterns = {"/SessionUser"})
-public class SessionUser extends HttpServlet {
+public class SessionUser {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try ( PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet SessionUser</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet SessionUser at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+    public static void autenticarUser(HttpServletRequest request, Usuario pUsuario) {
+        HttpSession session = (HttpSession) request.getSession();
+        session.setMaxInactiveInterval(3600);
+        session.setAttribute("auth", true);
+        session.setAttribute("user", pUsuario.getLogin());
+        session.setAttribute("rol", pUsuario.getRol().getNombre()); 
+    }
+    
+    public static boolean isAuth(HttpServletRequest request) {
+        HttpSession session = (HttpSession) request.getSession();
+        boolean auth = session.getAttribute("auth") != null ? (boolean) session.getAttribute("auth") : false;
+        return auth;
+    }
+    
+    public static String getUser(HttpServletRequest request) {
+        HttpSession session = (HttpSession) request.getSession();
+        String user = "";
+        if (SessionUser.isAuth(request)) { 
+            user = session.getAttribute("user") != null ? (String) session.getAttribute("user") : "";
+        }
+        return user;
+    }
+    
+    public static String getRol(HttpServletRequest request) {
+        HttpSession session = (HttpSession) request.getSession();
+        String user = "";
+        if (SessionUser.isAuth(request)) {
+            user = session.getAttribute("rol") != null ? (String) session.getAttribute("rol") : "";
+        }
+        return user;
+    }
+    
+    public static void authorize(HttpServletRequest request, HttpServletResponse response, IAuthorize pIAuthorize) throws ServletException, IOException {
+        if (SessionUser.isAuth(request)) {
+            pIAuthorize.authorize();
+        } else {
+            response.sendRedirect("Usuario?accion=login");
         }
     }
-
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
+    
+    public static void cerrarSession(HttpServletRequest request) {
+        HttpSession session = (HttpSession) request.getSession();
+        session.invalidate();
     }
-
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
-    }
-
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
-
 }
+
+    
+
+
