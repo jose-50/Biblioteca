@@ -1,87 +1,223 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
- */
+
 package biblioteca.appweb.controllers;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
-/**
- *
- * @author Alumno
- */
-@WebServlet(name = "EditorialServlet", urlPatterns = {"/EditorialServlet"})
+import java.util.ArrayList;
+import biblioteca.accesoadatos.EditorialDAL;
+import biblioteca.entidadesdenegocio.Editorial;
+import biblioteca.appweb.utils.*;
+
+@WebServlet(name = "EditorialServlet", urlPatterns = {"/Editorial"})
 public class EditorialServlet extends HttpServlet {
+    
+    
+    
+    
+    
+    
+    // <editor-fold defaultstate="collapsed" desc="Métodos para procesar las solicitudes get o post del Servlet">
+    
+    private Editorial obtenerEditorial(HttpServletRequest request) {
+        String accion = Utilidad.getParameter(request, "accion", "index");
+        Editorial editorial = new Editorial();
+        if (accion.equals("create") == false) {
+            editorial.setId(Integer.parseInt(Utilidad.getParameter(request, "id", "0")));
+        }
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try ( PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet EditorialServlet</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet EditorialServlet at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+        editorial.setNombre(Utilidad.getParameter(request, "nombre", ""));
+        if (accion.equals("index")) {
+            editorial.setTop_aux(Integer.parseInt(Utilidad.getParameter(request, "top_aux", "10")));
+            editorial.setTop_aux(editorial.getTop_aux() == 0 ? Integer.MAX_VALUE : editorial.getTop_aux());
+        }
+        editorial.setIdioma(Utilidad.getParameter(request, "idioma", ""));
+        if (accion.equals("index")) {
+            editorial.setTop_aux(Integer.parseInt(Utilidad.getParameter(request, "top_aux", "10")));
+            editorial.setTop_aux(editorial.getTop_aux() == 0 ? Integer.MAX_VALUE : editorial.getTop_aux());
+        }
+        editorial.setPais(Utilidad.getParameter(request, "pais", ""));
+        if (accion.equals("index")) {
+            editorial.setTop_aux(Integer.parseInt(Utilidad.getParameter(request, "top_aux", "10")));
+            editorial.setTop_aux(editorial.getTop_aux() == 0 ? Integer.MAX_VALUE : editorial.getTop_aux());
+        }
+        
+        
+        return editorial;
+    }
+    
+    private void doGetRequestIndex(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        try {
+            Editorial editorial = new Editorial();
+            editorial.setTop_aux(10);
+            ArrayList<Editorial> editoriales = EditorialDAL.buscar(editorial);
+            request.setAttribute("editoriales", editoriales);
+            request.setAttribute("top_aux", editorial.getTop_aux());             
+            request.getRequestDispatcher("Views/editorial/index.jsp").forward(request, response);
+        } catch (Exception ex) {
+            Utilidad.enviarError(ex.getMessage(), request, response);
         }
     }
-
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+    
+    private void doPostRequestIndex(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        try {
+            Editorial editorial = obtenereditorial(request);
+            ArrayList<Editorial> editoriales = EditorialDAL.buscar(editorial);
+            request.setAttribute("editoriales", editoriales);
+            request.setAttribute("top_aux", editorial.getTop_aux());
+            request.getRequestDispatcher("Views/Editorial/index.jsp").forward(request, response);
+        } catch (Exception ex) { 
+            Utilidad.enviarError(ex.getMessage(), request, response);
+        }
+    }
+    
+    private void doGetRequestCreate(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.getRequestDispatcher("Views/Editorial/create.jsp").forward(request, response);
+    }
+    
+    private void doPostRequestCreate(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        try {
+            Editorial editorial = obtenerEditorial(request);
+            int result = EditorialDAL.crear(editorial);
+            if (result != 0) {
+                request.setAttribute("accion", "index");
+                doGetRequestIndex(request, response);
+            } else {
+                Utilidad.enviarError("No se logro registrar un nuevo registro", request, response);
+            }
+        } catch (Exception ex) {
+            Utilidad.enviarError(ex.getMessage(), request, response);
+        }
+    }
+    
+    private void requestObtenerPorId(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        try {
+            Editorial editorial = obtenerEditorial(request);
+            Editorial editorial_result = EditorialDAL.obtenerPorId(editorial);
+            if (editorial_result.getId() > 0) {
+                request.setAttribute("editorial", editorial_result);
+            } else {
+                Utilidad.enviarError("El Id:" + editorial.getId() + " no existe en la tabla de Editorial", request, response);
+            }
+        } catch (Exception ex) {
+            Utilidad.enviarError(ex.getMessage(), request, response);
+        }
+    }
+    
+    private void doGetRequestEdit(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        requestObtenerPorId(request, response);
+        request.getRequestDispatcher("Views/Editorial/edit.jsp").forward(request, response);
+    }
+    
+    private void doPostRequestEdit(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        try {
+            Editorial editorial = obtenerEditorial(request);
+            int result = EditorialDAL.modificar(editorial);
+            if (result != 0) {
+                request.setAttribute("accion", "index");
+                doGetRequestIndex(request, response);
+            } else {
+                Utilidad.enviarError("No se logro actualizar el registro", request, response);
+            }
+        } catch (Exception ex) {
+            // Enviar al jsp de error si hay un Exception
+            Utilidad.enviarError(ex.getMessage(), request, response);
+        }
+    }
+    
+    private void doGetRequestDetails(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        requestObtenerPorId(request, response);
+        request.getRequestDispatcher("Views/Editorial/details.jsp").forward(request, response);
+    }
+    
+    private void doGetRequestDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        requestObtenerPorId(request, response);
+        request.getRequestDispatcher("Views/Editorial/delete.jsp").forward(request, response);
+    }
+    
+    private void doPostRequestDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        try {
+            Editorial editorial = obtenerEditorial(request);
+            int result = EditorialDAL.eliminar(editorial);
+            if (result != 0) {
+                request.setAttribute("accion", "index");
+                doGetRequestIndex(request, response);
+            } else {
+                Utilidad.enviarError("No se logro eliminar el registro", request, response);
+            }
+        } catch (Exception ex) {
+            Utilidad.enviarError(ex.getMessage(), request, response);
+        }
+    }
+    // </editor-fold>
+    
+    // <editor-fold defaultstate="collapsed" desc="Métodos para procesar las peticiones Get y Post">
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        SessionUser.authorize(request, response, () -> {
+            String accion = Utilidad.getParameter(request, "accion", "index");
+            switch (accion) {
+                case "index":
+                    request.setAttribute("accion", accion);
+                    doGetRequestIndex(request, response);
+                    break;
+                case "create":
+                    request.setAttribute("accion", accion);
+                    doGetRequestCreate(request, response);
+                    break;
+                case "edit":
+                    request.setAttribute("accion", accion);
+                    doGetRequestEdit(request, response);
+                    break;
+                case "delete":
+                    request.setAttribute("accion", accion);
+                    doGetRequestDelete(request, response);
+                    break;
+                case "details":
+                    request.setAttribute("accion", accion);
+                    doGetRequestDetails(request, response);
+                    break;
+                default:
+                    request.setAttribute("accion", accion);
+                    doGetRequestIndex(request, response);
+            }
+        });
     }
-
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+    
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        SessionUser.authorize(request, response, () -> {
+            String accion = Utilidad.getParameter(request, "accion", "index");
+            switch (accion) {
+                case "index":
+                    request.setAttribute("accion", accion);
+                    doPostRequestIndex(request, response);
+                    break;
+                case "create":
+                    request.setAttribute("accion", accion);
+                    doPostRequestCreate(request, response);
+                    break;
+                case "edit":
+                    request.setAttribute("accion", accion);
+                    doPostRequestEdit(request, response);
+                    break;
+                case "delete":
+                    request.setAttribute("accion", accion);
+                    doPostRequestDelete(request, response);
+                    break;
+                default:
+                    request.setAttribute("accion", accion);
+                    doGetRequestIndex(request, response);
+            }
+        });
     }
-
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
-
+    //</editor-fold>
 }
+
+  
