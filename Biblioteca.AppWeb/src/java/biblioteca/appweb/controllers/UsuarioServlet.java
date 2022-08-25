@@ -17,6 +17,7 @@ import biblioteca.accesoadatos.UsuarioDAL;
 import biblioteca.appweb.utils.*;
 import biblioteca.entidadesdenegocio.Rol;
 import biblioteca.entidadesdenegocio.Usuario;
+import jakarta.servlet.ServletException;
 
 
 /**

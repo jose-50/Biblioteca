@@ -5,7 +5,12 @@
 package biblioteca.appweb.controllers;
 
 import java.io.IOException;
+<<<<<<< HEAD
 import javax.servlet.ServletException;
+=======
+import java.io.PrintWriter;
+import jakarta.servlet.ServletException;
+>>>>>>> 78166c2387e963926eb6d4780d4ada6d9a93e2e1
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
