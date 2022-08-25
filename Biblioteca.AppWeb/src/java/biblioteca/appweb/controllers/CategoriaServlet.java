@@ -137,7 +137,7 @@ public class CategoriaServlet extends HttpServlet {
     
     private void doPostRequestDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
-            Categoria categoria = obtenerRol(request);
+            Categoria categoria = obtenerCategoria(request);
             int result = CategoriaDAL.eliminar(categoria);
             if (result != 0) {
                 request.setAttribute("accion", "index");
