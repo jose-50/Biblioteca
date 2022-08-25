@@ -6,7 +6,9 @@
             <file>file:/C:/Users/DELL/Documents/NetBeansProjects/Biblioteca.AppWeb/web/index.html</file>
         </group>
         <group>
-            <file>file:/C:/Users/Alumno/Desktop/Biblioteca/Biblioteca.AppWeb/src/java/practicaservlets/Operaciones.java</file>
+            <file>file:/C:/Users/Alumno/Desktop/Biblioteca/Biblioteca.AppWeb/src/java/biblioteca/appweb/controllers/EditorialServlet.java</file>
+            <file>file:/C:/Users/Alumno/Desktop/Biblioteca/Biblioteca.AppWeb/src/java/biblioteca/appweb/controllers/AutorServlet.java</file>
+            <file>file:/C:/Users/Alumno/Desktop/Biblioteca/Biblioteca.AppWeb/src/java/biblioteca/appweb/utils/IAuthorize.java</file>
         </group>
     </open-files>
 </project-private>
