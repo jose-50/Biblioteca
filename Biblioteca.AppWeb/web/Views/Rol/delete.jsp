@@ -1,5 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="controlempresas.entidadeseenegocio.Rol"%>
+<%@page import="biblioteca.entidadesdenegocio.Rol"%>
 <% Rol rol = (Rol) request.getAttribute("rol");%>
 <!DOCTYPE html>
 <html>
