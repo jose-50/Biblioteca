@@ -1,5 +1,11 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="biblioteca.entidadesdenegocio.Lector"%>
+<%@page import="biblioteca.entidadesdenegocio.Libro"%>
+<%@page import="biblioteca.entidadesdenegocio.Autor"%>
+<%@page import="biblioteca.entidadesdenegocio.Categoria"%>
+<%@page import="biblioteca.entidadesdenegocio.Editorial"%>
+
+
+
 <%@page import="java.util.ArrayList"%>
 <% ArrayList<Libro> libros = (ArrayList<Libro>) request.getAttribute("libros");
     int numPage = 1;
@@ -35,28 +41,31 @@
                         <input  id="txtNombre" type="text" name="nombre">
                         <label for="txtNombre">Nombre</label>
                     </div> 
-                   
+                   <div class="input-field col l6 s12">
+                        <input  id="txtEdicion" type="text" name="edicion">
+                        <label for="txtEdicion">Edicion</label>
+                    </div> 
                         
                         <div class="input-field col l6 s12">
-                        <input  id="txtDui" type="text" name="dui">
-                        <label for="txtDui">Autor</label>
+                        <input  id="txtAutor" type="text" name="autor">
+                        <label for="txtAutor">Autor</label>
                     </div> 
                         
                      <div class="input-field col l6 s12">
-                        <input  id="txtApellido" type="text" name="apellido">
-                        <label for="txtApellido">Categoria</label>
+                        <input  id="txtCategoria" type="text" name="categoria">
+                        <label for="txtCategoria">Categoria</label>
                     </div> 
                     
                     <div class="input-field col l6 s12">
-                        <input  id="txtDui" type="text" name="dui">
-                        <label for="txtDui">Editorial</label>
+                        <input  id="txtEditorial" type="text" name="editorial">
+                        <label for="txtEditorial">Editorial</label>
                     </div> 
                         
                     </div> 
                     
                 <div class="input-field col l6 s12">
-                        <input  id="txtDui" type="text" name="dui">
-                        <label for="txtDui">FechaEdicion</label>
+                        <input  id="txtFechaEdicion" type="text" name="fechaedicion">
+                        <label for="txtFechaEdicion">FechaEdicion</label>
                     </div> 
                         
                     </div> 
@@ -85,12 +94,13 @@
                                 <tr>
                              
                                     <th>Nombre</th>  
+                                    <th>Edicion</th>  
                                     <th>Autor</th> 
                                     <th>Categoria</th>
                                     <th>Editorial</th>
                                     <th>FechaEdicion</th>
                                     <th>Acciones</th>
-                                </tr>
+                              </tr>
                             </thead>                       
                             <tbody>                           
                                 <% for (Libro libros: s) {
@@ -103,6 +113,7 @@
                                 %>
                                 <tr data-page="<%= tempNumPage%>">
                                     <td><%=libro.getNombre()%>
+                                     <td><%=libro.getEdicion()%>
                                      <td><%=libro.getAutor()%>
                                      <td><%=libro.getCategoria()%>
                                      <td><%=libro.getEditorial()%>

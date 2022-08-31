@@ -27,7 +27,7 @@
                     
                     
                     <div class="input-field col l4 s12">
-                    <input disabled  id="txtDui" type="text" value="<%=editorial.getPais()%>">
+                    <input disabled  id="txtDui" type="text" value="<%=lector.getPais()%>">
                     <label for="txtDui">Dui</label>
                     
                 </div>                                        

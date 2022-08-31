@@ -65,7 +65,7 @@ public class EditorialServlet extends HttpServlet {
     
     private void doPostRequestIndex(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
-            Editorial editorial = obtenereditorial(request);
+            Editorial editorial = obtenerEditorial(request);
             ArrayList<Editorial> editoriales = EditorialDAL.buscar(editorial);
             request.setAttribute("editoriales", editoriales);
             request.setAttribute("top_aux", editorial.getTop_aux());

@@ -1,5 +1,10 @@
 package biblioteca.appweb.controllers;
 
+import java.io.IOException;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import biblioteca.accesoadatos.LibroDAL;
 import biblioteca.accesoadatos.LectorDAL;
@@ -31,7 +36,7 @@ return prestamoLibro;
         try {
             PrestamoLibro prestamoLibro = new PrestamoLibro();
             prestamoLibro.setTop_aux(10);
-            ArrayList<PrestamoLibro> prestamoLibros = PrestamoLibroDAL.buscarIncluirLL(prestamoLibro);
+            ArrayList<PrestamoLibro> prestamoLibros = PrestamoLibroDAL.buscarIncluirACE(prestamoLibro);
             request.setAttribute("prestamoLibros", prestamoLibros);
             request.setAttribute("top_aux", prestamoLibro.getTop_aux());
             request.getRequestDispatcher("Views/PrestamoLibro/index.jsp").forward(request, response);
@@ -43,7 +48,7 @@ return prestamoLibro;
     private void doPostRequestIndex(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             PrestamoLibro prestamoLibro= obtenerPrestamoLibro(request);
-            ArrayList<PrestamoLibro> prestamoLibros = PrestamoLibroDAL.buscarIncluirLL(prestamoLibro);
+            ArrayList<PrestamoLibro> prestamoLibros = PrestamoLibroDAL.buscarIncluirACE(prestamoLibro);
             request.setAttribute("prestamoLibros", prestamoLibros);
             request.setAttribute("top_aux", prestamoLibro.getTop_aux());
             request.getRequestDispatcher("Views/PrestamoLibro/index.jsp").forward(request, response);
@@ -94,7 +99,7 @@ return prestamoLibro;
                 Utilidad.enviarError("El Id:" + prestamoLibro_result.getId() + " no existe en la tabla de PrestamoLibro", request, response);
             }
         } catch (Exception ex) {
-            Utilidad.enviarError(ex.getMessae(), request, response);
+            Utilidad.enviarError(ex.getMessage(), request, response);
         }
     }
 

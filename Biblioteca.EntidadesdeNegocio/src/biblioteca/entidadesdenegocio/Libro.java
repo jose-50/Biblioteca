@@ -10,6 +10,7 @@ public class Libro {
     
     private int id;
     private String nombre;
+    private String edicion;
     private int idAutor;
     private int idCategoria;
     private int idEditorial;
@@ -22,14 +23,17 @@ public class Libro {
     public Libro() {
     }
 
-    public Libro(int id, String nombre, int idAutor, int idCategoria, int idEditorial, String FechaEdicion) {
+    public Libro(int id, String nombre, String edicion, int idAutor, int idCategoria, int idEditorial, String FechaEdicion) {
         this.id = id;
         this.nombre = nombre;
+        this.edicion = edicion;
         this.idAutor = idAutor;
         this.idCategoria = idCategoria;
         this.idEditorial = idEditorial;
         this.FechaEdicion = FechaEdicion;
     }
+
+   
 
     public int getId() {
         return id;
@@ -47,6 +51,14 @@ public class Libro {
         this.nombre = nombre;
     }
 
+    public String getEdicion() {
+        return edicion;
+    }
+
+    public void setEdicion(String edicion) {
+        this.edicion = edicion;
+    }
+
     public int getIdAutor() {
         return idAutor;
     }
@@ -54,8 +66,7 @@ public class Libro {
     public void setIdAutor(int idAutor) {
         this.idAutor = idAutor;
     }
-    
-    
+
     public int getIdCategoria() {
         return idCategoria;
     }
@@ -112,15 +123,5 @@ public class Libro {
         this.editorial = editorial;
     }
 
-    public void getIdAutor(int i) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    public void setLibro(Libro get) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
+   
 }
-
-    
-

@@ -8,7 +8,7 @@ import java.sql.*;
 public class LibroDAL {
     
     static String obtenerCampos() {
-        return "l.Id,l.Nombre, l.IdAutor,  l.IdCategoria, l.IdEditorial, l.FechaRegistro";
+        return "l.Id,l.Nombre, l.Edicion,l.IdAutor, l.IdCategoria, l.IdEditorial, l.FechaRegistro";
     }
     private static String obtenerSelect(Libro pLibro) {
         String sql;
@@ -44,10 +44,12 @@ public class LibroDAL {
             sql = "INSERT INTO Libros(Nombre,IdAutor,IdCategoria,IdEditorial,FechaRegistro) VALUES(?,?,?,?,?)"; // Definir la consulta INSERT a la tabla de Rol utilizando el simbolo ? para enviar parametros
             try (PreparedStatement ps = ComunDB.createPreparedStatement(conn, sql);) { // Obtener el PreparedStatement desde la clase ComunDB
                 ps.setString(1, pLibro.getNombre()); 
-                ps.setInt(2, pLibro.getIdAutor());
-                ps.setInt(3, pLibro.getIdCategoria()); 
-                ps.setInt(4, pLibro.getIdEditorial());
-                ps.setString(5, pLibro.getFechaEdicion()); 
+                ps.setString(2, pLibro.getEdicion());
+
+                ps.setInt(3, pLibro.getIdAutor());
+                ps.setInt(4, pLibro.getIdCategoria()); 
+                ps.setInt(5, pLibro.getIdEditorial());
+                ps.setString(6, pLibro.getFechaEdicion()); 
                 result = ps.executeUpdate(); // Ejecutar la consulta INSERT en la base de datos
                 ps.close(); // Cerrar el PreparedStatement
             } catch (SQLException ex) {
@@ -68,10 +70,12 @@ public static int modificar(Libro pLibro) throws Exception {
             sql = "UPDATE Libros SET Nombre=? ,IdAutor=? , IdCategoria=?,IdEditorial=?,FechaRegistro=? WHERE Id=?"; // Definir la consulta UPDATE a la tabla de Rol utilizando el simbolo ? para enviar parametros
             try (PreparedStatement ps = ComunDB.createPreparedStatement(conn, sql);) { // Obtener el PreparedStatement desde la clase ComunDB
                 ps.setString(1, pLibro.getNombre()); 
-                ps.setInt(2, (int) pLibro.getIdAutor());
-                ps.setInt(3, pLibro.getIdCategoria()); 
-                ps.setInt(4, pLibro.getIdEditorial());
-                ps.setString(5, pLibro.getFechaEdicion()); // Agregar el parametro a la consulta donde estan el simbolo ? #2  
+                ps.setString(2, pLibro.getEdicion());
+
+                ps.setInt(3, pLibro.getIdAutor());
+                ps.setInt(4, pLibro.getIdCategoria()); 
+                ps.setInt(5, pLibro.getIdEditorial());
+                ps.setString(6, pLibro.getFechaEdicion());   
                 result = ps.executeUpdate(); // Ejecutar la consulta UPDATE en la base de datos
                 ps.close(); // Cerrar el PreparedStatement
             } catch (SQLException ex) {
@@ -112,6 +116,8 @@ static int asignarDatosResultSet(Libro pLibro, ResultSet pResultSet, int pIndex)
         pLibro.setId(pResultSet.getInt(pIndex)); // index 1
         pIndex++;
         pLibro.setNombre(pResultSet.getString(pIndex)); // index 3
+        pIndex++;
+        pLibro.setEdicion(pResultSet.getString(pIndex)); // index 3
         pIndex++;
         pLibro.setIdAutor(pResultSet.getInt(pIndex)); // index 2
         pIndex++;
@@ -280,6 +286,13 @@ static int asignarDatosResultSet(Libro pLibro, ResultSet pResultSet, int pIndex)
             if (statement != null) {
                 // Agregar el parametro del campo Nombre a la consulta SELECT de la tabla de Rol
                 statement.setString(pUtilQuery.getNumWhere(), "%" + pLibro.getNombre() + "%"); 
+            }
+        }
+        if (pLibro.getNombre() != null && pLibro.getNombre().trim().isEmpty() == false) {
+            pUtilQuery.AgregarWhereAnd(" l.Edicion LIKE ? "); // Agregar el campo Nombre al filtro de la consulta SELECT y agregar en el WHERE o AND
+            if (statement != null) {
+                // Agregar el parametro del campo Nombre a la consulta SELECT de la tabla de Rol
+                statement.setString(pUtilQuery.getNumWhere(), "%" + pLibro.getEdicion() + "%"); 
             }
         }
         

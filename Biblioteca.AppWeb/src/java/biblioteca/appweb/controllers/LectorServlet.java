@@ -1,10 +1,25 @@
 
 package biblioteca.appweb.controllers;
 
+
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import biblioteca.accesoadatos.LectorDAL;
 import biblioteca.entidadesdenegocio.Lector;
 import biblioteca.appweb.utils.*;
+
+
+/**
+ *
+ * @author Alumno
+ */
 
 @WebServlet(name = "LectorServlet", urlPatterns = {"/LectorServlet"})
 public class LectorServlet extends HttpServlet {
@@ -57,6 +72,7 @@ public class LectorServlet extends HttpServlet {
         } catch (Exception ex) { 
             Utilidad.enviarError(ex.getMessage(), request, response);
         }
+
     }
     
     private void doGetRequestCreate(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -137,9 +153,76 @@ public class LectorServlet extends HttpServlet {
             Utilidad.enviarError(ex.getMessage(), request, response);
         }
     }
-   
-                    
-                    
     
+    
+    
+    // <editor-fold defaultstate="collapsed" desc="Métodos para procesar las peticiones Get y Post">
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        SessionUser.authorize(request, response, () -> {
+            String accion = Utilidad.getParameter(request, "accion", "index");
+            switch (accion) {
+                case "index":
+                    request.setAttribute("accion", accion);
+                    doGetRequestIndex(request, response);
+                    break;
+                case "create":
+                    request.setAttribute("accion", accion);
+                    doGetRequestCreate(request, response);
+                    break;
+                case "edit":
+                    request.setAttribute("accion", accion);
+                    doGetRequestEdit(request, response);
+                    break;
+                case "delete":
+                    request.setAttribute("accion", accion);
+                    doGetRequestDelete(request, response);
+                    break;
+                case "details":
+                    request.setAttribute("accion", accion);
+                    doGetRequestDetails(request, response);
+                    break;
+                default:
+                    request.setAttribute("accion", accion);
+                    doGetRequestIndex(request, response);
+            }
+        });
+    }
+    
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        SessionUser.authorize(request, response, () -> {
+            String accion = Utilidad.getParameter(request, "accion", "index");
+            switch (accion) {
+                case "index":
+                    request.setAttribute("accion", accion);
+                    doPostRequestIndex(request, response);
+                    break;
+                case "create":
+                    request.setAttribute("accion", accion);
+                    doPostRequestCreate(request, response);
+                    break;
+                case "edit":
+                    request.setAttribute("accion", accion);
+                    doPostRequestEdit(request, response);
+                    break;
+                case "delete":
+                    request.setAttribute("accion", accion);
+                    doPostRequestDelete(request, response);
+                    break;
+                default:
+                    request.setAttribute("accion", accion);
+                    doGetRequestIndex(request, response);
+            }
+        });
+    }
+
     //</editor-fold>
 }
+
+
+    
+    
+

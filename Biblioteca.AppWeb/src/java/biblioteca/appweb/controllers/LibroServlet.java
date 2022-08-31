@@ -1,7 +1,13 @@
 
 package biblioteca.appweb.controllers;
-import java.util.ArrayList;
 
+import java.io.IOException;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
 import biblioteca.accesoadatos.CategoriaDAL;
 import biblioteca.accesoadatos.EditorialDAL;
 import biblioteca.accesoadatos.AutorDAL;
@@ -20,7 +26,6 @@ import biblioteca.entidadesdenegocio.Autor;
  */
 @WebServlet(name = "LibroServlet", urlPatterns = {"/LibroServlet"})
 public class LibroServlet extends HttpServlet {
-
 
     
     private Libro obtenerLibro(HttpServletRequest request) {
@@ -47,6 +52,7 @@ return libro;
             Utilidad.enviarError(ex.getMessage(), request, response);
         }
     }
+
 
     private void doPostRequestIndex(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
@@ -108,7 +114,7 @@ return libro;
                 Utilidad.enviarError("El Id:" + libro_result.getId() + " no existe en la tabla de Libro", request, response);
             }
         } catch (Exception ex) {
-            Utilidad.enviarError(ex.getMessae(), request, response);
+            Utilidad.enviarError(ex.getMessage(), request, response);
         }
     }
 

@@ -6,21 +6,14 @@
             <file>file:/C:/Users/DELL/Documents/NetBeansProjects/Biblioteca.AppWeb/web/index.html</file>
         </group>
         <group>
-            <file>file:/C:/Users/Alumno/Desktop/Biblioteca/Biblioteca.AppWeb/src/java/biblioteca/appweb/controllers/EditorialServlet.java</file>
-            <file>file:/C:/Users/Alumno/Desktop/Biblioteca/Biblioteca.AppWeb/src/java/biblioteca/appweb/controllers/CategoriaServlet.java</file>
-            <file>file:/C:/Users/Alumno/Desktop/Biblioteca/Biblioteca.AppWeb/web/Views/Lector/edit.jsp</file>
-            <file>file:/C:/Users/Alumno/Desktop/Biblioteca/Biblioteca.AppWeb/web/Views/Lector/index.jsp</file>
-            <file>file:/C:/Users/Alumno/Desktop/Biblioteca/Biblioteca.AppWeb/src/java/biblioteca/appweb/controllers/RolServlet.java</file>
-            <file>file:/C:/Users/Alumno/Desktop/Biblioteca/Biblioteca.AppWeb/web/Views/Lector/details.jsp</file>
-            <file>file:/C:/Users/Alumno/Desktop/Biblioteca/Biblioteca.AppWeb/web/index.html</file>
-            <file>file:/C:/Users/Alumno/Desktop/Biblioteca/Biblioteca.AppWeb/src/java/biblioteca/appweb/controllers/AutorServlet.java</file>
-            <file>file:/C:/Users/Alumno/Desktop/Biblioteca/Biblioteca.AppWeb/web/Views/Shared/error.jsp</file>
-            <file>file:/C:/Users/Alumno/Desktop/Biblioteca/Biblioteca.AppWeb/web/Views/Lector/create.jsp</file>
+            <file>file:/C:/Users/Alumno/Desktop/Biblioteca/Biblioteca.AppWeb/web/Views/PrestamoLibro/create.jsp</file>
+            <file>file:/C:/Users/Alumno/Desktop/Biblioteca/Biblioteca.AppWeb/web/Views/Libro/edit.jsp</file>
             <file>file:/C:/Users/Alumno/Desktop/Biblioteca/Biblioteca.AppWeb/src/java/biblioteca/appweb/controllers/LibroServlet.java</file>
-            <file>file:/C:/Users/Alumno/Desktop/Biblioteca/Biblioteca.AppWeb/src/java/biblioteca/appweb/controllers/UsuarioServlet.java</file>
+            <file>file:/C:/Users/Alumno/Desktop/Biblioteca/Biblioteca.AppWeb/web/Views/Libro/details.jsp</file>
+            <file>file:/C:/Users/Alumno/Desktop/Biblioteca/Biblioteca.AppWeb/web/Views/Usuario/index.jsp</file>
+            <file>file:/C:/Users/Alumno/Desktop/Biblioteca/Biblioteca.AppWeb/web/Views/Libro/create.jsp</file>
+            <file>file:/C:/Users/Alumno/Desktop/Biblioteca/Biblioteca.AppWeb/web/Views/Libro/delete.jsp</file>
             <file>file:/C:/Users/Alumno/Desktop/Biblioteca/Biblioteca.AppWeb/src/java/biblioteca/appweb/controllers/LectorServlet.java</file>
-            <file>file:/C:/Users/Alumno/Desktop/Biblioteca/Biblioteca.AppWeb/src/java/biblioteca/appweb/utils/IAuthorize.java</file>
-            <file>file:/C:/Users/Alumno/Desktop/Biblioteca/Biblioteca.AppWeb/src/java/biblioteca/appweb/controllers/HomeServlet.java</file>
         </group>
     </open-files>
 </project-private>

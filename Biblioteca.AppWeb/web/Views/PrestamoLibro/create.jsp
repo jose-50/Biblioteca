@@ -10,38 +10,35 @@
         <jsp:include page="/Views/Shared/headerBody.jsp" />  
         <main class="container">   
             <h5>Crear PrestamoLibro </h5>
-            <form action="Libro" method="post">
+            <form action="PrestamoLibro" method="post">
                 <input type="hidden" name="accion" value="<%=request.getAttribute("accion")%>">                
                 <div class="row">
+                     
                     <div class="input-field col l4 s12">
-                        <input  id="txtNombre" type="text" name="nombre" required class="validate" maxlength="30">
-                        <la<bel for="txtNombre">Nombre</label>
+                        <jsp:include page="/Views/IdLibro/select.jsp">                           
+                            <jsp:param name="id" value="0" />  
+                        </jsp:include>  
                     </div>  
                     
-                    
-                    
-                    <div class="input-field col l4 s12">
-                        <input  id="txtApellido" type="text" name="apellido" required class="validate" maxlength="30">
-                        <la<bel for="txtApellido">Autor</label>
-                    </div>  
                     
                     <div class="input-field col l4 s12">
-                        <input  id="txtDui" type="text" name="dui" required class="validate" maxlength="30">
-                        <la<bel for="txtDui">Categoria</label>
+                        <jsp:include page="/Views/IdLector/select.jsp">                           
+                            <jsp:param name="id" value="0" />  
+                        </jsp:include>  
                     </div>  
-                     <div class="input-field col l4 s12">
-                        <input  id="txtDui" type="text" name="dui" required class="validate" maxlength="30">
-                        <la<bel for="txtDui">Editorial</label>
-                    </div>  
-                     <div class="input-field col l4 s12">
-                        <input  id="txtDui" type="text" name="dui" required class="validate" maxlength="30">
-                        <la<bel for="txtDui">FechaEdicion</label>
-                    </div>  
+                    <div class="input-field col l4 s12">
+                        <input  id="txtFechaEntrega" type="text" name="fechaentrega" required class="validate" maxlength="30">
+                        <la<bel for="txtFechaEntrega">FechaEntrega</label>
+                    </div> 
+                  <div class="input-field col l4 s12">
+                        <input  id="txtFechaDevolucion" type="text" name="fechadevolucion" required class="validate" maxlength="30">
+                        <la<bel for="txtFechaDevolucion">FechaDevolucion</label>
+                    </div> 
                 </div>
                 <div class="row">
                     <div class="col l12 s12">
                         <button type="sutmit" class="waves-effect waves-light btn blue"><i class="material-icons right">save</i>Guardar</button>
-                        <a href="Libro" class="waves-effect waves-light btn blue"><i class="material-icons right">list</i>Cancelar</a>                          
+                        <a href="PrestamoLibro" class="waves-effect waves-light btn blue"><i class="material-icons right">list</i>Cancelar</a>                          
                     </div>
                 </div>
             </form>          
@@ -49,3 +46,4 @@
         <jsp:include page="/Views/Shared/footerBody.jsp" />
     </body>
 </html>
+

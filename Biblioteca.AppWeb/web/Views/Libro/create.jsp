@@ -17,7 +17,10 @@
                         <input  id="txtNombre" type="text" name="nombre" required class="validate" maxlength="30">
                         <la<bel for="txtNombre">Nombre</label>
                     </div>  
-                    
+                   <div class="input-field col l4 s12">
+                        <input  id="txtEdicion" type="text" name="edicion" required class="validate" maxlength="30">
+                        <la<bel for="txtEdicion">Edicion</label>
+                    </div>  
                     
                     
                     <div class="input-field col l4 s12">
@@ -36,10 +39,9 @@
                             <jsp:param name="id" value="0" />  
                         </jsp:include>  
                     </div>  
-                     <div class="input-field col l4 s12">
-                        <jsp:include page="/Views/FechaEdicion/select.jsp">                           
-                            <jsp:param name="id" value="0" />  
-                        </jsp:include>  
+                    <div class="input-field col l4 s12">
+                        <input  id="txtFechaEdicion" type="text" name="fechaedicion" required class="validate" maxlength="30">
+                        <la<bel for="txtFechaEdicion">FechaEdicion</label>
                     </div>  
                 </div>
                 <div class="row">

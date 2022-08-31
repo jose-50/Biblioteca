@@ -5,7 +5,7 @@
 package biblioteca.appweb.utils;
 
 import java.io.IOException;
-import javax.servlet.ServletException;
+import jakarta.servlet.ServletException;
 public interface IAuthorize {
     void authorize() throws ServletException, IOException;
 }

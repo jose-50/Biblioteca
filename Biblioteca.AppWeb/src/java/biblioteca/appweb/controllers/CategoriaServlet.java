@@ -27,22 +27,13 @@ public class CategoriaServlet extends HttpServlet {
             categoria.setId(Integer.parseInt(Utilidad.getParameter(request, "id", "0")));
         }
 
-        Categoria.getNombre(Utilidad.getParameter(request, "nombre", ""));
+        categoria.setNombre(Utilidad.getParameter(request, "nombre", ""));
         if (accion.equals("index")) {
             categoria.setTop_aux(Integer.parseInt(Utilidad.getParameter(request, "top_aux", "10")));
             categoria.setTop_aux(categoria.getTop_aux() == 0 ? Integer.MAX_VALUE : categoria.getTop_aux());
         }
         
-        Categoria.getpais(Utilidad.getParameter(request, "pais", ""));
-        if (accion.equals("index")) {
-            categoria.setTop_aux(Integer.parseInt(Utilidad.getParameter(request, "top_aux", "10")));
-            categoria.setTop_aux(categoria.getTop_aux() == 0 ? Integer.MAX_VALUE : categoria.getTop_aux());
-        }
-        Categoria.getIdioma(Utilidad.getParameter(request, "idioma", ""));
-        if (accion.equals("index")) {
-            categoria.setTop_aux(Integer.parseInt(Utilidad.getParameter(request, "top_aux", "10")));
-            categoria.setTop_aux(categoria.getTop_aux() == 0 ? Integer.MAX_VALUE : categoria.getTop_aux());
-        }
+        
         return categoria;
     }
     
@@ -61,7 +52,7 @@ public class CategoriaServlet extends HttpServlet {
     
     private void doPostRequestIndex(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
-            Categoria categoria = obtenerRol(request);
+            Categoria categoria = obtenerCategoria(request);
             ArrayList<Categoria> categorias = CategoriaDAL.buscar(categoria);
             request.setAttribute("categorias", categorias);
             request.setAttribute("top_aux", categoria.getTop_aux());
