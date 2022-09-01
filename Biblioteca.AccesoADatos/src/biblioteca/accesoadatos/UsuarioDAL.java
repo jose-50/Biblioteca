@@ -94,7 +94,7 @@ public class UsuarioDAL {
         if (existe == false) {
             try (Connection conn = ComunDB.obtenerConexion();) { // Obtener la conexion desde la clase ComunDB y encerrarla en try para cierre automatico
                  //Definir la consulta INSERT a la tabla de Usuario utilizando el simbolo "?" para enviar parametros
-                sql = "INSERT INTO Usuario(IdRol,Nombre,Apellido,Login,Password,Estatus,FechaRegistro) VALUES(?,?,?,?,?,?,?)";
+                sql = "INSERT INTO Usuario(IdRol,Nombre,Apellido,Login,Pass,Estatus,FechaRegistro) VALUES(?,?,?,?,?,?,?)";
                 try (PreparedStatement ps = ComunDB.createPreparedStatement(conn, sql);) { // Obtener el PreparedStatement desde la clase ComunDB
                     ps.setInt(1, pUsuario.getIdRol()); // Agregar el parametro a la consulta donde estan el simbolo "?" #1  
                     ps.setString(2, pUsuario.getNombre()); // Agregar el parametro a la consulta donde estan el simbolo "?" #2 
@@ -373,7 +373,7 @@ public class UsuarioDAL {
         try (Connection conn = ComunDB.obtenerConexion();) { // Obtener la conexion desde la clase ComunDB y encerrarla en try para cierre automatico
             String sql = obtenerSelect(pUsuario); // Obtener la consulta SELECT de la tabla Usuario
              // Concatenar a la consulta SELECT de la tabla Usuario el WHERE  para comparar los campos de Login, Password, Estatus
-            sql += " WHERE u.Login=? AND u.Password=? AND u.Estatus=?";
+            sql += " WHERE u.Login=? AND u.Pass=? AND u.Estatus=?";
             try (PreparedStatement ps = ComunDB.createPreparedStatement(conn, sql);) { // Obtener el PreparedStatement desde la clase ComunDB
                 ps.setString(1, pUsuario.getLogin()); // Agregar el parametro a la consulta donde estan el simbolo ? #1 
                 ps.setString(2, password); // Agregar el parametro a la consulta donde estan el simbolo ? #2 
@@ -406,7 +406,7 @@ public class UsuarioDAL {
         // en el parametro es un Usuario Autorizado
         if (usuarioAut.getId() > 0 && usuarioAut.getLogin().equals(pUsuario.getLogin())) {
             try (Connection conn = ComunDB.obtenerConexion();) { // Obtener la conexion desde la clase ComunDB y encerrarla en try para cierre automatico
-                sql = "UPDATE Usuario SET Password=? WHERE Id=?"; // Crear la consulta Update a la tabla de Usuario para poder modificar el Password
+                sql = "UPDATE Usuario SET Pass=? WHERE Id=?"; // Crear la consulta Update a la tabla de Usuario para poder modificar el Password
                 try (PreparedStatement ps = ComunDB.createPreparedStatement(conn, sql);) { // Obtener el PreparedStatement desde la clase ComunDB
                     // Agregar el parametro a la consulta donde estan el simbolo ? #1 pero antes encriptar el password para enviarlo encriptado
                     ps.setString(1, encriptarMD5(pUsuario.getPassword())); //

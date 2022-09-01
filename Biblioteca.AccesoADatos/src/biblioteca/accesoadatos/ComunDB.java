@@ -19,7 +19,7 @@ public class ComunDB {
             + "loginTimeout=30;encrypt=false;trustServerCertificate=false";
     
     static String connectionUrlMariaDB="jdbc:mariadb://localhost:3306/"
-      +"Biblioteca?"   
+      +"biblioteca?"   
             +"user=root&password=sonsonate";
             
             
@@ -33,7 +33,7 @@ public class ComunDB {
     }
     else if(TIPODB==2){
         
-        DriverManager.registerDriver(new com.microsoft.sqlserver.jdbc.SQLServerDriver());
+        DriverManager.registerDriver(new org.mariadb.jdbc.Driver());
         Connection connection = DriverManager.getConnection(connectionUrlMariaDB); 
         return connection; 
     }

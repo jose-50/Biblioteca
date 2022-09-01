@@ -14,7 +14,7 @@ import biblioteca.accesoadatos.RolDAL;
 import biblioteca.entidadesdenegocio.Rol; 
 import biblioteca.appweb.utils.*;
 
-@WebServlet(name = "RolServlet", urlPatterns = {"/RolServlet"})
+@WebServlet(name = "RolServlet", urlPatterns = {"/Rol"})
 public class RolServlet extends HttpServlet {
 
 private Rol obtenerRol(HttpServletRequest request) {

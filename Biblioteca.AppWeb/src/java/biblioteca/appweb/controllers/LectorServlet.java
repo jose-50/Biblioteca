@@ -21,7 +21,7 @@ import biblioteca.appweb.utils.*;
  * @author Alumno
  */
 
-@WebServlet(name = "LectorServlet", urlPatterns = {"/LectorServlet"})
+@WebServlet(name = "LectorServlet", urlPatterns = {"/Lector"})
 public class LectorServlet extends HttpServlet {
     private Lector obtenerLector(HttpServletRequest request) {
         String accion = Utilidad.getParameter(request, "accion", "index");

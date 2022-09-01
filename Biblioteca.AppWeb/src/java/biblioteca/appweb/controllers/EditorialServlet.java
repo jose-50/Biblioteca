@@ -57,7 +57,7 @@ public class EditorialServlet extends HttpServlet {
             ArrayList<Editorial> editoriales = EditorialDAL.buscar(editorial);
             request.setAttribute("editoriales", editoriales);
             request.setAttribute("top_aux", editorial.getTop_aux());             
-            request.getRequestDispatcher("Views/editorial/index.jsp").forward(request, response);
+            request.getRequestDispatcher("Views/Editorial/index.jsp").forward(request, response);
         } catch (Exception ex) {
             Utilidad.enviarError(ex.getMessage(), request, response);
         }

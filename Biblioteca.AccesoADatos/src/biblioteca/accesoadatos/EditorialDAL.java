@@ -178,7 +178,7 @@ public static ArrayList<Editorial> obtenerTodos() throws Exception {
     static void querySelect(Editorial pEditorial, ComunDB.UtilQuery pUtilQuery) throws SQLException {
         PreparedStatement statement = pUtilQuery.getStatement(); // Obtener el PreparedStatement al cual aplicar los parametros
         if (pEditorial.getId() > 0) { // Verificar si se va incluir el campo Id en el filtro de la consulta SELECT de la tabla de Rol
-            pUtilQuery.AgregarWhereAnd(" r.Id=? "); // Agregar el campo Id al filtro de la consulta SELECT y agregar en el WHERE o AND
+            pUtilQuery.AgregarWhereAnd(" e.Id=? "); // Agregar el campo Id al filtro de la consulta SELECT y agregar en el WHERE o AND
             if (statement != null) { 
                 // Agregar el parametro del campo Id a la consulta SELECT de la tabla de Rol
                 statement.setInt(pUtilQuery.getNumWhere(), pEditorial.getId()); 

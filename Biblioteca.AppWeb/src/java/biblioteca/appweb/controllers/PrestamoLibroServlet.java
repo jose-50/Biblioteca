@@ -16,7 +16,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import biblioteca.appweb.utils.*;
 
 
-@WebServlet(name = "PrestamoLibroServlet", urlPatterns = {"/PrestamoLibroServlet"})
+@WebServlet(name = "PrestamoLibroServlet", urlPatterns = {"/PrestamoLibro"})
 public class PrestamoLibroServlet extends HttpServlet {
 
 

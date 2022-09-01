@@ -269,7 +269,7 @@ static int asignarDatosResultSet(PrestamoLibro pPrestamoLibro, ResultSet pResult
         
         
         if ( (int)pPrestamoLibro.getIdLibro() > 0) {
-            pUtilQuery.AgregarWhereAnd(" l.IdLibro=? "); // agregar el campo IdRol al filtro de la consulta SELECT y agregar en el WHERE o AND
+            pUtilQuery.AgregarWhereAnd(" p.IdLibro=? "); // agregar el campo IdRol al filtro de la consulta SELECT y agregar en el WHERE o AND
             if (statement != null) {
                  // agregar el parametro del campo IdRol a la consulta SELECT de la tabla de Usuario
                 statement.setInt(pUtilQuery.getNumWhere(), (int) pPrestamoLibro.getIdLibro());
@@ -278,7 +278,7 @@ static int asignarDatosResultSet(PrestamoLibro pPrestamoLibro, ResultSet pResult
         
         
         if (pPrestamoLibro.getIdLector()> 0) {
-            pUtilQuery.AgregarWhereAnd(" l.IdLector=? "); // agregar el campo IdRol al filtro de la consulta SELECT y agregar en el WHERE o AND
+            pUtilQuery.AgregarWhereAnd(" p.IdLector=? "); // agregar el campo IdRol al filtro de la consulta SELECT y agregar en el WHERE o AND
             if (statement != null) {
                  // agregar el parametro del campo IdRol a la consulta SELECT de la tabla de Usuario
                 statement.setInt(pUtilQuery.getNumWhere(), pPrestamoLibro.getIdLector());
@@ -289,14 +289,14 @@ static int asignarDatosResultSet(PrestamoLibro pPrestamoLibro, ResultSet pResult
         
         
         if (pPrestamoLibro.getFechaEntrega()!= null && pPrestamoLibro.getFechaEntrega().trim().isEmpty() == false) {
-            pUtilQuery.AgregarWhereAnd(" l.FechaEntrega LIKE ? "); // Agregar el campo Nombre al filtro de la consulta SELECT y agregar en el WHERE o AND
+            pUtilQuery.AgregarWhereAnd(" p.FechaEntrega LIKE ? "); // Agregar el campo Nombre al filtro de la consulta SELECT y agregar en el WHERE o AND
             if (statement != null) {
                 // Agregar el parametro del campo Nombre a la consulta SELECT de la tabla de Rol
                 statement.setString(pUtilQuery.getNumWhere(), "%" + pPrestamoLibro.getFechaEntrega()+ "%"); 
             }
         }
         if (pPrestamoLibro.getFechaDevolucion()!= null && pPrestamoLibro.getFechaDevolucion().trim().isEmpty() == false) {
-            pUtilQuery.AgregarWhereAnd(" l.FechaDevolucion LIKE ? "); // Agregar el campo Nombre al filtro de la consulta SELECT y agregar en el WHERE o AND
+            pUtilQuery.AgregarWhereAnd(" p.FechaDevolucion LIKE ? "); // Agregar el campo Nombre al filtro de la consulta SELECT y agregar en el WHERE o AND
             if (statement != null) {
                 // Agregar el parametro del campo Nombre a la consulta SELECT de la tabla de Rol
                 statement.setString(pUtilQuery.getNumWhere(), "%" + pPrestamoLibro.getFechaDevolucion()+ "%"); 
@@ -318,8 +318,8 @@ static int asignarDatosResultSet(PrestamoLibro pPrestamoLibro, ResultSet pResult
             sql += LectorDAL.obtenerCampos(); 
            
             sql += " FROM PrestamoLibro p";
-            sql += " JOIN Libro l on (l.IdLibro=l.Id)";
-            sql += " JOIN Lector l on (l.IdLector=l.Id)";
+            sql += " JOIN Libro l on (p.IdLibro=l.Id)";
+            sql += " JOIN Lector l on (p.IdLector=l.Id)";
             
             ComunDB comundb = new ComunDB();
             ComunDB.UtilQuery utilQuery = comundb.new UtilQuery(sql, null, 0);

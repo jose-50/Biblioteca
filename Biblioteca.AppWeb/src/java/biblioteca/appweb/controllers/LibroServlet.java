@@ -24,7 +24,7 @@ import biblioteca.entidadesdenegocio.Autor;
  *
  * @author Alumno
  */
-@WebServlet(name = "LibroServlet", urlPatterns = {"/LibroServlet"})
+@WebServlet(name = "LibroServlet", urlPatterns = {"/Libro"})
 public class LibroServlet extends HttpServlet {
 
     
