@@ -40,6 +40,7 @@
                         <label for="txtPais">Pais</label>
                     </div> 
                     
+                    
                     <div class="input-field col l6 s12">
                         <input  id="txtFechaNacimiento" type="text" name="fechanacimiento">
                         <label for="txtFechaNacimiento">FechaNacimiento</label>
@@ -76,7 +77,7 @@
                                 </tr>
                             </thead>                       
                             <tbody>                           
-                                <% for (Autor autores: s) {
+                                <% for (Autor autor: autores) {
                                         int tempNumPage = numPage;
                                         if (numPage > 1) {
                                             countReg++;

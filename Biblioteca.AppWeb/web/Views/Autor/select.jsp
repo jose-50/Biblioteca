@@ -1,5 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="bilioteca.entidadesdenegocio.Autor"%>
+<%@page import="biblioteca.entidadesdenegocio.Autor"%>
 <%@page import="biblioteca.accesoadatos.AutorDAL"%>
 <%@page import="java.util.ArrayList"%>
 <% ArrayList<Autor> autores = AutorDAL.obtenerTodos();

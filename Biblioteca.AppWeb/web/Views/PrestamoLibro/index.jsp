@@ -1,16 +1,17 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="biblioteca.entidadesdenegocio.PrestamoLibro"%>
 <%@page import="biblioteca.entidadesdenegocio.Lector"%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="biblioteca.entidadesdenegocio.Libro"%>
 
 <% ArrayList<PrestamoLibro> prestamoLibros = (ArrayList<PrestamoLibro>) request.getAttribute("prestamoLibros");
     int numPage = 1;
     int numReg = 10;
     int countReg = 0;
-    if (libros == null) {
-        libros = new ArrayList();
-    } else if (libros.size() > numReg) {
-        double divNumPage = (double) libros.size() / (double) numReg;
+    if (prestamoLibros == null) {
+        prestamoLibros = new ArrayList();
+    } else if (prestamoLibros.size() > numReg) {
+        double divNumPage = (double) prestamoLibros.size() / (double) numReg;
         numPage = (int) Math.ceil(divNumPage);
     }
     String strTop_aux = request.getParameter("top_aux");
@@ -23,25 +24,25 @@
 <html>
     <head>        
         <jsp:include page="/Views/Shared/title.jsp" />
-        <title>Buscar Libro</title>
+        <title>Buscar PrestamoLibro</title>
 
     </head>
     <body>
         <jsp:include page="/Views/Shared/headerBody.jsp" />  
         <main class="container">   
-            <h5>Buscar Libro</h5>
+            <h5>Buscar PrestamoLibro</h5>
             <form action="Libro" method="post">
                 <input type="hidden" name="accion" value="<%=request.getAttribute("accion")%>"> 
                 <div class="row">
              <div class="input-field col l4 s12">
-                        <jsp:include page="/Views/IdLibro/select.jsp">                           
+                        <jsp:include page="/Views/Libro/select.jsp">                           
                             <jsp:param name="id" value="0" />  
                         </jsp:include>  
                     </div>  
                     
                     
                     <div class="input-field col l4 s12">
-                        <jsp:include page="/Views/IdLector/select.jsp">                           
+                        <jsp:include page="/Views/Lector/select.jsp">                           
                             <jsp:param name="id" value="0" />  
                         </jsp:include>  
                     </div>  
@@ -63,7 +64,7 @@
                 <div class="row">
                     <div class="col l12 s12">
                         <button type="sutmit" class="waves-effect waves-light btn blue"><i class="material-icons right">search</i>Buscar</button>
-                        <a href="Libro?accion=create" class="waves-effect waves-light btn blue"><i class="material-icons right">add</i>Crear</a>                          
+                        <a href="PrestamoLibro?accion=create" class="waves-effect waves-light btn blue"><i class="material-icons right">add</i>Crear</a>                          
                     </div>
                 </div>
             </form>
@@ -83,7 +84,7 @@
                               </tr>
                             </thead>                       
                             <tbody>                           
-                                <% for (Libro libros: s) {
+                                <% for (PrestamoLibro prestamolibros: prestamoLibros) {
                                         int tempNumPage = numPage;
                                         if (numPage > 1) {
                                             countReg++;
@@ -92,22 +93,22 @@
                                         }
                                 %>
                                 <tr data-page="<%= tempNumPage%>">
-                                    <td><%=libro.getIdLibro()%>
-                                     <td><%=libro.getIdLector()%>
-                                     <td><%=libro.getFechaEntrega()%>
-                                     <td><%=libro.getFechaDevolucion()%>
+                                    <td><%=prestamolibros.getIdLibro()%>
+                                     <td><%=prestamolibros.getIdLector()%>
+                                     <td><%=prestamolibros.getFechaEntrega()%>
+                                     <td><%=prestamolibros.getFechaDevolucion()%>
                                     
 
                                     </td>                                       
                                     <td>
                                         <div style="display:flex">
-                                            <a href="PrestamoLibro?accion=edit&id=<%=prestamolibro.getId()%>" title="Modificar" class="waves-effect waves-light btn green">
+                                            <a href="PrestamoLibro?accion=edit&id=<%=prestamolibros.getId()%>" title="Modificar" class="waves-effect waves-light btn green">
                                                 <i class="material-icons">edit</i>
                                             </a>
-                                            <a href="PrestamoLibro?accion=details&id=<%=prestamoLibro.getId()%>" title="Ver" class="waves-effect waves-light btn blue">
+                                            <a href="PrestamoLibro?accion=details&id=<%=prestamolibros.getId()%>" title="Ver" class="waves-effect waves-light btn blue">
                                                 <i class="material-icons">description</i>
                                             </a>
-                                            <a href="PrestamoLibro?accion=delete&id=<%=prestamoLibro.getId()%>" title="Eliminar" class="waves-effect waves-light btn red">
+                                            <a href="PrestamoLibro?accion=delete&id=<%=prestamolibros.getId()%>" title="Eliminar" class="waves-effect waves-light btn red">
                                                 <i class="material-icons">delete</i>
                                             </a>     
                                         </div>

@@ -1,6 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="biblioteca.appweb.utils.*"%>
-<%@page import="jakarta.servlet.http.HttpServletRequest"%>
+<%@page import="javax.servlet.http.HttpServletRequest"%>
 
 <% if (SessionUser.isAuth(request) == false) {
          response.sendRedirect("Usuario?accion=login");
@@ -18,8 +18,8 @@
         <main class="container"> 
             <div class="row">
                 <div class="col l12 s12">
-                    <h1>Bienvenidos</h1> 
-                    <span>A La Biblioteca</span> 
+                    <h1>Bienvenidos a la Biblioteca</h1> 
+                    <span></span> 
                 </div>
             </div>            
         </main>

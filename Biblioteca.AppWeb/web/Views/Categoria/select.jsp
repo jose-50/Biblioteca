@@ -1,5 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="bilioteca.entidadesdenegocio.Categoria"%>
+<%@page import="biblioteca.entidadesdenegocio.Categoria"%>
 <%@page import="biblioteca.accesoadatos.CategoriaDAL"%>
 <%@page import="java.util.ArrayList"%>
 <% ArrayList<Categoria> categorias = CategoriaDAL.obtenerTodos();

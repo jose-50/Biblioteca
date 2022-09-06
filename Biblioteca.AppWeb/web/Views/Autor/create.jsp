@@ -24,7 +24,7 @@
                     </div>  
                     
                     <div class="input-field col l4 s12">
-                        <input  id="txtFechaNacimiento" type="text" name="fechanacimiento" required class="validate" maxlength="30">
+                        <input  id="txtFechaNacimiento" type="text" name="fechaNacimiento" required class="validate" maxlength="30">
                         <la<bel for="txtFechaNacimiento">FechaNacimiento</label>
                     </div>  
                 </div>

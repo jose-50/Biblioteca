@@ -1,5 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="bilioteca.entidadesdenegocio.Lector"%>
+<%@page import="biblioteca.entidadesdenegocio.Lector"%>
 <%@page import="biblioteca.accesoadatos.LectorDAL"%>
 <%@page import="java.util.ArrayList"%>
 <% ArrayList<Lector> lectores = LectorDAL.obtenerTodos();

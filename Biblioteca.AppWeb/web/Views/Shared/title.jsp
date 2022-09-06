@@ -1,6 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="biblioteca.appweb.utils.Utilidad"%>
-<%@page import="jakarta.servlet.http.HttpServletRequest"%>
+<%@page import="javax.servlet.http.HttpServletRequest"%>
 <!--Import Google Icon Font-->
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <!-- Compiled and minified CSS -->

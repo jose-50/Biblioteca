@@ -1,5 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="controlempresas.entidadeseenegocio.Usuario"%>
+<%@page import="biblioteca.entidadesdenegocio.Usuario"%>
 <!DOCTYPE html>
 <html>
     <head>        

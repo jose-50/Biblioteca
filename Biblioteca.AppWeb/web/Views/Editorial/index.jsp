@@ -82,8 +82,9 @@
                                     <th>Acciones</th>
                                 </tr>
                             </thead>                       
-                            <tbody>                           
-                                <% for (Editorial editoriales: s) {
+                            <tbody>  
+               <% for (Editorial editorial: editoriales) {
+
                                         int tempNumPage = numPage;
                                         if (numPage > 1) {
                                             countReg++;

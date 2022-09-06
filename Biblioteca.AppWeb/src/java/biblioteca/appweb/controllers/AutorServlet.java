@@ -6,11 +6,11 @@ package biblioteca.appweb.controllers;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import biblioteca.accesoadatos.AutorDAL;
 import biblioteca.entidadesdenegocio.Autor;
@@ -18,7 +18,7 @@ import biblioteca.appweb.utils.*;
 
 
 
-@WebServlet(name = "AutorServlet", urlPatterns = {"/AutorServlet"})
+@WebServlet(name = "AutorServlet", urlPatterns = {"/Autor"})
 public class AutorServlet extends HttpServlet {
      private Autor obtenerAutor(HttpServletRequest request) {
         String accion = Utilidad.getParameter(request, "accion", "index");
@@ -45,15 +45,15 @@ public class AutorServlet extends HttpServlet {
         
         return autor;
     }
-    
+    // rik
     private void doGetRequestIndex(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             Autor autor = new Autor();
             autor.setTop_aux(10);
             ArrayList<Autor> autores = AutorDAL.buscar(autor);
-            request.setAttribute("roles", autores);
+            request.setAttribute("autores", autores);
             request.setAttribute("top_aux", autor.getTop_aux());             
-            request.getRequestDispatcher("Views/Rol/index.jsp").forward(request, response);
+            request.getRequestDispatcher("Views/Autor/index.jsp").forward(request, response);
         } catch (Exception ex) {
             Utilidad.enviarError(ex.getMessage(), request, response);
         }
@@ -63,7 +63,7 @@ public class AutorServlet extends HttpServlet {
         try {
             Autor autor = obtenerAutor(request);
             ArrayList<Autor> autores = AutorDAL.buscar(autor);
-            request.setAttribute("roles", autores);
+            request.setAttribute("autores", autores);
             request.setAttribute("top_aux", autor.getTop_aux());
             request.getRequestDispatcher("Views//index.jsp").forward(request, response);
         } catch (Exception ex) { 
@@ -97,7 +97,7 @@ public class AutorServlet extends HttpServlet {
             if (autor_result.getId() > 0) {
                 request.setAttribute("autor", autor_result);
             } else {
-                Utilidad.enviarError("El Id:" + autor.getId() + " no existe en la tabla de Rol", request, response);
+                Utilidad.enviarError("El Id:" + autor.getId() + " no existe en la tabla de Autor", request, response);
             }
         } catch (Exception ex) {
             Utilidad.enviarError(ex.getMessage(), request, response);

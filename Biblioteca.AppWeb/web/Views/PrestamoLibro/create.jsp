@@ -15,14 +15,14 @@
                 <div class="row">
                      
                     <div class="input-field col l4 s12">
-                        <jsp:include page="/Views/IdLibro/select.jsp">                           
+                        <jsp:include page="/Views/Libro/select.jsp">                           
                             <jsp:param name="id" value="0" />  
                         </jsp:include>  
                     </div>  
                     
                     
                     <div class="input-field col l4 s12">
-                        <jsp:include page="/Views/IdLector/select.jsp">                           
+                        <jsp:include page="/Views/Lector/select.jsp">                           
                             <jsp:param name="id" value="0" />  
                         </jsp:include>  
                     </div>  

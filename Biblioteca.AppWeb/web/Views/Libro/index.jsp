@@ -4,8 +4,6 @@
 <%@page import="biblioteca.entidadesdenegocio.Categoria"%>
 <%@page import="biblioteca.entidadesdenegocio.Editorial"%>
 
-
-
 <%@page import="java.util.ArrayList"%>
 <% ArrayList<Libro> libros = (ArrayList<Libro>) request.getAttribute("libros");
     int numPage = 1;
@@ -68,6 +66,10 @@
                         <label for="txtFechaEdicion">FechaEdicion</label>
                     </div> 
                         
+                                <div class="input-field col l6 s12">
+                        <input  id="txtFechaNacimiento" type="text" name="fechaNacimiento">
+                        <label for="txtFechaNacimiento">FechaEdicion</label>
+                    </div> 
                     </div> 
                     
                     
@@ -93,7 +95,7 @@
                             <thead>
                                 <tr>
                              
-                                    <th>Nombre</th>  
+                                    <th>Nombre</th> 
                                     <th>Edicion</th>  
                                     <th>Autor</th> 
                                     <th>Categoria</th>
@@ -103,7 +105,8 @@
                               </tr>
                             </thead>                       
                             <tbody>                           
-                                <% for (Libro libros: s) {
+                             <% for (Libro libro: libros) {
+
                                         int tempNumPage = numPage;
                                         if (numPage > 1) {
                                             countReg++;

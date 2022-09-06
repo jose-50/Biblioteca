@@ -1,10 +1,10 @@
 package biblioteca.appweb.controllers;
 
 import java.io.IOException;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletResponse;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import biblioteca.accesoadatos.LibroDAL;
 import biblioteca.accesoadatos.LectorDAL;
@@ -12,7 +12,7 @@ import biblioteca.accesoadatos.PrestamoLibroDAL;
 import biblioteca.entidadesdenegocio.Libro;
 import biblioteca.entidadesdenegocio.Lector;
 import biblioteca.entidadesdenegocio.PrestamoLibro;
-import jakarta.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletRequest;
 import biblioteca.appweb.utils.*;
 
 

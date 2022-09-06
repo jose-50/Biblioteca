@@ -75,15 +75,10 @@
                             <thead>
                                 <tr>
                              
-                                    <th>Nombre</th>  
-                                    
-                                    <th>Apellido</th>
-                                    <th>Dui</th> 
-                                    <th>Acciones</th>
                                 </tr>
                             </thead>                       
                             <tbody>                           
-                                <% for (Lector lectores: s) {
+                                <% for (Lector lector: lectores) {
                                         int tempNumPage = numPage;
                                         if (numPage > 1) {
                                             countReg++;

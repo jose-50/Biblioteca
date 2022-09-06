@@ -1,5 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="bilioteca.entidadesdenegocio.Rol"%>
+<%@page import="biblioteca.entidadesdenegocio.Rol"%>
 <%@page import="biblioteca.accesoadatos.RolDAL"%>
 <%@page import="java.util.ArrayList"%>
 <% ArrayList<Rol> roles = RolDAL.obtenerTodos();

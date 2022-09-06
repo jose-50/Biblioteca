@@ -1,5 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="bilioteca.entidadesdenegocio.Editorial"%>
+<%@page import="biblioteca.entidadesdenegocio.Editorial"%>
 <%@page import="biblioteca.accesoadatos.EditorialDAL"%>
 <%@page import="java.util.ArrayList"%>
 <% ArrayList<Editorial> editoriales = EditorialDAL.obtenerTodos();
